@@ -1,17 +1,12 @@
 import type { DiscountStrategy, Order } from "../types";
 
 export class PremiumStrategy implements DiscountStrategy {
-  private discount: number = 0.1;
-
   calculate(order: Order) {
-    const { total, hasLoyaltyCard } = order;
+    let percentage: number = 0.1;
 
-    if (total > 200) this.discount += 0.05;
+    if (order.total > 200) percentage += 0.05;
+    if (order.hasLoyaltyCard) percentage += 0.02;
 
-    if (hasLoyaltyCard) this.discount += 0.02;
-
-    this.discount = this.discount > 0.5 ? 0.5 : this.discount;
-
-    return total * (1 - this.discount);
+    return percentage;
   }
 }

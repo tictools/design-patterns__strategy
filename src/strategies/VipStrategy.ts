@@ -1,17 +1,12 @@
 import type { DiscountStrategy, Order } from "../types";
 
 export class VipStrategy implements DiscountStrategy {
-  private discount: number = 0.2;
-
   calculate(order: Order) {
-    const { total, itemsCount, hasLoyaltyCard } = order;
+    let percentage: number = 0.2;
 
-    if (itemsCount > 10) this.discount += 0.05;
+    if (order.itemsCount > 10) percentage += 0.05;
+    if (order.total > 500 && order.hasLoyaltyCard) percentage += 0.1;
 
-    if (total > 500 && hasLoyaltyCard) this.discount += 0.1;
-
-    this.discount = this.discount > 0.5 ? 0.5 : this.discount;
-
-    return total * (1 - this.discount);
+    return percentage;
   }
 }
