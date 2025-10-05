@@ -6,3 +6,7 @@ export interface Order {
   itemsCount: number;
   hasLoyaltyCard?: boolean;
 }
+
+export interface DiscountStrategy<> {
+  calculate(order: Order): number;
+}
