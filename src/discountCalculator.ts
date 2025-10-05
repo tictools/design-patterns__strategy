@@ -1,28 +1,28 @@
+import { DiscountService } from "./services/DiscountService";
 import { PremiumStrategy } from "./strategies/PremiumStrategy";
 import { RegularStrategy } from "./strategies/RegularStrategy";
-import { VipStrategy } from "./strategies/VIPStrategy";
+import { VipStrategy } from "./strategies/VipStrategy";
 import type { Order } from "./types";
 
-export function calculateFinalPrice(order: Order): number {
-  const { clientType, total } = order;
+//create service
+const discountService = new DiscountService();
 
-  if (clientType === "Regular") {
-    const finalPrice = new RegularStrategy().calculate(order);
+//register strategies
+discountService.registerStrategy({
+  key: "Regular",
+  strategy: new RegularStrategy(),
+});
+discountService.registerStrategy({
+  key: "Premium",
+  strategy: new PremiumStrategy(),
+});
+discountService.registerStrategy({ key: "VIP", strategy: new VipStrategy() });
 
-    return Math.round(finalPrice * 100) / 100;
-  }
+export function calculateFinalPrice(
+  order: Order,
+  discountService: DiscountService
+): number {
+  const { finalPrice } = discountService.calculateFinalPrice({ order });
 
-  if (clientType === "Premium") {
-    const finalPrice = new PremiumStrategy().calculate(order);
-
-    return Math.round(finalPrice * 100) / 100;
-  }
-
-  if (clientType === "VIP") {
-    const finalPrice = new VipStrategy().calculate(order);
-
-    return Math.round(finalPrice * 100) / 100;
-  }
-
-  return total;
+  return finalPrice;
 }
