@@ -10,3 +10,5 @@ export interface Order {
 export interface DiscountStrategy<> {
   calculate(order: Order): number;
 }
+
+export type Nullable<T> = T | null;
