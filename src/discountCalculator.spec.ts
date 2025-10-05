@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateFinalPrice } from "./discountCalculator";
-import { Order } from "./types";
+import type { Order } from "./types";
 
 describe("calculateFinalPrice", () => {
   it("returns the same total for a Regular client with no discounts", () => {
@@ -62,8 +62,11 @@ describe("calculateFinalPrice", () => {
   });
 
   it("falls back to no discount for unknown client types (unsafe fallback path)", () => {
-    // bypass TypeScript's ClientType by casting to any to exercise the function's fallback
-    const order: any = { clientType: "Unknown", total: 120, itemsCount: 4 };
+    const order = {
+      clientType: "Unknown",
+      total: 120,
+      itemsCount: 4,
+    } as unknown as never;
     expect(calculateFinalPrice(order)).toBe(120);
   });
 

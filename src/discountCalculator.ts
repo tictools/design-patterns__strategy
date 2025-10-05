@@ -1,4 +1,4 @@
-import { Order } from "./types";
+import type { Order } from "./types";
 
 export function calculateFinalPrice(order: Order): number {
   const { clientType, total, itemsCount, hasLoyaltyCard } = order;
