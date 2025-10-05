@@ -1,0 +1,31 @@
+{
+  "name": "strategy-pattern",
+  "version": "1.0.0",
+  "description": "This document explains the **Strategy** pattern and how to apply it in a small learning project: a _discount calculator_ for an online store. The goal is to learn how to identify code with multiple conditions, encapsulate behaviors into strategies, and improve code testability and maintainability.",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:watch": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tictools/design-patterns__strategy.git"
+  },
+  "keywords": [
+    "desing",
+    "pattern",
+    "sofware",
+    "engineering",
+    "foundations"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tictools/design-patterns__strategy/issues"
+  },
+  "homepage": "https://github.com/tictools/design-patterns__strategy#readme",
+  "devDependencies": {
+    "vitest": "3.2.4"
+  }
+}
