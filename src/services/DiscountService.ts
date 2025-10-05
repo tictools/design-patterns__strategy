@@ -10,6 +10,7 @@ interface IDiscountService {
   }) => void;
 
   unregisterStrategy: ({ key }: { key: string }) => void;
+
   unregisterAllStrategies: () => void;
 
   calculateFinalPrice: ({ order }: { order: Order }) => { finalPrice: number };
